@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lääkelista</title>
+     <meta charset="UTF-8">
+    <title>Lisää lääke</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body class="container mt-4">
+
+    <h1>Lisää uusi potilas</h1>
+
+    <form th:action="@{/potilas/tallenna}" method="post" class="card p-4 shadow">
+
+        <div class="mb-3">
+            <label for="nimi" class="form-label">Potilaan nimi</label>
+            <input type="text" class="form-control" name="nimi" id="nimi">
+        </div>
+
+        <div class="mb-3">
+            <label for="osoite" class="form-label">Potilaan osoite</label>
+            <input type="text" class="form-control" name="osoite" id="osoite">
+        </div>
+
+        <button type="submit" class="btn btn-success px-5">Talenna</button>
+</form>
+    <p>
+    <a th:href="@{/laake}" class="btn btn-secondary mt-3">Takaisin lista</a>
+    </p>
+</body>
+</html>

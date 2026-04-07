@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" 
+          rel="stylesheet" 
+          href="/css/bootstrap.min.css" 
+          th:href="@{/css/bootstrap.min.css}" />
+    <title>Potilaan lääkkeet</title>
+</head>
+<body>
+
+<h1 th:text="${potilas.nimi} + ' lääkelista'">Potilaan lääkkeet</h1>
+
+<!-- Potilaan lääkkeet -->
+<table class="table table-striped">
+    <tr>
+        <th>Lääke</th>
+        <th>Vahvuus</th>
+        <th>Annos</th>
+        <th>Toiminnot</th>
+    </tr>
+    <tr th:each="pl : ${laakkeet}">
+        <td th:text="${pl.laake.nimi}"></td>
+        <td th:text="${pl.laake.vahvuus}"></td>
+        <td>
+            <!-- Muokkaa annos lomake -->
+            <form th:action="@{'/potilaanlaakkeet/muokkaa/' + ${pl.id}}" method="post">
+                <input type="text" name="annos" th:value="${pl.annos}" />
+                <button type="submit">Tallenna</button>
+            </form>
+        </td>
+        <td>
+            <!-- Poista lääke -->
+            <a th:href="@{'/potilaanlaakkeet/poista/' + ${pl.id}}" class="btn btn-danger">Poista</a>
+        </td>
+    </tr>
+</table>
+
+<h2>Lisää uusi lääke</h2>
+<form th:action="@{/potilaanlaakkeet/lisaa}" method="post">
+    <input type="hidden" name="potilasId" th:value="${potilas.id}" />
+
+    <label for="laake">Lääke:</label>
+    <select name="laakeId" id="laake">
+        <option th:each="laake : ${kaikkiLaakkeet}" 
+                th:value="${laake.id}" 
+                th:text="${laake.nimi + ' (' + laake.vahvuus + ')'}"></option>
+    </select>
+
+    <label for="annos">Annos:</label>
+    <input type="text" name="annos" id="annos"/>
+
+    <button type="submit">Lisää lääke</button>
+</form>
+
+<p><a th:href="@{/potilaat}" class="btn btn-secondary mt-3">Takaisin potilaat</a></p>
+
+</body>
+</html>

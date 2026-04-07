@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Potilaat</title>
+     <link type="text/css" 
+          rel="stylesheet" 
+          href="/css/bootstrap.min.css" 
+          th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<h1>Potilaat</h1>
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nimi</th>
+        <th>Osoite</th>
+        <th>Lääkelista</th>
+    </tr>
+    <tr th:each="potilas : ${potilaat}">
+        <td th:text="${potilas.id}"></td>
+        <td th:text="${potilas.nimi}"></td>
+        <td th:text="${potilas.osoite}"></td>
+        <td>
+            <a th:href="@{'/potilas/' + ${potilas.id} + '/laakkeet'}"class="btn btn-primary">Näytä</a>
+            <a th:href="@{'/potilas/muokkaa/' + ${potilas.id}}" class="btn btn-warning btn-sm">Muokkaa</a>
+            <a th:href="@{'/potilas/poista/' + ${potilas.id}}" class="btn btn-danger">Poista</a>
+        </td>
+    </tr>
+</table>
+    <p>
+        <a th:href="@{/lisaapotilas}" class="btn btn-success">Lisää uusi potilas</a>
+    </p>
+
+</body>
+</html>
