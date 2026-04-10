@@ -10,6 +10,8 @@ import jakarta.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Laake {
 
@@ -22,6 +24,7 @@ public class Laake {
 
     // Lista PotilaanLaake-suhteita
     @OneToMany(mappedBy = "laake", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore //potilaanLaakkeet jätetään pois JSON-vastauksesta
     private Set<PotilaanLaake> potilaanLaakkeet = new HashSet<>();
 
     public Laake() {}

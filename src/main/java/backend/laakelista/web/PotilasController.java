@@ -1,5 +1,6 @@
 package backend.laakelista.web;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,7 @@ public class PotilasController {
      
     //poitaa potilas
     @GetMapping("/potilas/poista/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String poistaPotilas(@PathVariable Long id) {
     potilasRepo.deleteById(id);
     return "redirect:/potilaat";
