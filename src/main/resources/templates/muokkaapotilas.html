@@ -9,7 +9,7 @@
 
 <h1 class="mb-4">Muokkaa potilasta</h1>
 
-<form th:action="@{/potilas/muokkaa}" th:object="${potilas}" method="post" class="card p-4 shadow" style="max-width:400px;">
+<form th:action="@{/potilas/muokkaa}" th:object="${potilas}" method="post" class="card p-4 shadow">
     
     <input type="hidden" th:field="*{id}" />
 
