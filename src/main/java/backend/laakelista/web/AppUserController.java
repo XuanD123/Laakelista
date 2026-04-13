@@ -22,6 +22,11 @@ public class AppUserController {
 		this.repository = appUserRepository;
 	}
 
+	@GetMapping("/")  //render ohjaa kirjautumissivulle
+	public String root() {
+    return "redirect:/login";
+}
+
     @GetMapping("/login")
     public String login() {
         return "login"; // palauttaa login.html
